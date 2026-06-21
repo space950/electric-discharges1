@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виды электрических разрядов и их применение</title>
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #0288d1;
+            --accent-color: #ffb300;
+            --bg-color: #f5f5f7;
+            --text-color: #212121;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Боковая навигация */
+        aside {
+            width: var(--sidebar-width);
+            background-color: var(--primary-color);
+            color: white;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            padding: 2rem 1rem;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-header p {
+            font-size: 0.85rem;
+            color: #b0bec5;
+            margin-top: 0.5rem;
+        }
+
+        aside ul {
+            list-style: none;
+        }
+
+        aside ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        aside ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            display: block;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        aside ul li a:hover, aside ul li a.active {
+            background-color: var(--secondary-color);
+            color: white;
+            padding-left: 1.5rem;
+        }
+
+        /* Главный контент */
+        main {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            padding: 3rem 4rem;
+        }
+
+        section {
+            background: white;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            scroll-margin-top: 2rem;
+        }
+
+        /* Шапка проекта */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), #0d47a1);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .meta-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        .meta-item strong {
+            display: block;
+            color: var(--accent-color);
+            margin-bottom: 0.2rem;
+        }
+
+        /* Стили текста */
+        h2.section-title {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2.section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #424242;
+        }
+
+        ul.styled-list, ol.styled-list {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        ul.styled-list li, ol.styled-list li {
+            margin-bottom: 0.5rem;
+            color: #424242;
+        }
+
+        /* Карточки разрядов */
+        .discharge-card {
+            border-left: 4px solid var(--secondary-color);
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Практическая часть (Опрос) */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 6px;
+        }
+
+        .stat-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .chart-bar-wrapper {
+            margin-bottom: 0.8rem;
+        }
+
+        .chart-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .chart-bar-bg {
+            background: #e0e0e0;
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .chart-bar-fill {
+            background: linear-gradient(90deg, var(--secondary-color), #4fc3f7);
+            height: 100%;
+            border-radius: 6px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            aside {
+                width: 70px;
+                padding: 2rem 0.5rem;
+            }
+            .sidebar-header, aside ul li a span {
+                display: none;
+            }
+            aside ul li a {
+                text-align: center;
+                padding: 0.75rem 0;
+            }
+            main {
+                margin-left: 70px;
+                width: calc(100% - 70px);
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            aside {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 1rem;
+            }
+            aside ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            aside ul li {
+                margin-bottom: 0;
+            }
+            aside ul li a {
+                padding: 0.5rem 1rem;
+            }
+            main {
+                margin-left: 0;
+                width: 100%;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="sidebar-header">
+            <h2>Физика разрядов</h2>
+            <p>Индивидуальный проект</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#hero">Главная</a></li>
+                <li><a href="#intro">Введение</a></li>
+                <li><a href="#theory">Теоретическая часть</a></li>
+                <li><a href="#practice">Практическая часть</a></li>
+                <li><a href="#conclusion">Заключение</a></li>
+                <li><a href="#sources">Литература</a></li>
+            </ul>
+        </</nav>
+    </aside>
+
+    <main>
+        
+        <section id="hero" class="hero-section">
+            <p style="color: #b0bec5; font-size: 0.9rem; margin-bottom: 1rem;">
+                Департамент образования науки Ханты-Мансийского автономного округа – Югры<br>
+                Лангепасский политехнический колледж (Филиал в г. Покачи)
+            </p>
+            <h1>Виды электрических разрядов и их применение</h1>
+            
+            <div class="meta-info">
+                <div class="meta-item">
+                    <strong>Автор:</strong>
+                    Мезенцева Егор Александрович<br>Студент группы ПРН-25<br>Специальность: Разработка и эксплуатация нефтяных и газовых месторождений
+                </div>
+                <div class="meta-item">
+                    <strong>Руководитель:</strong>
+                    Ахметгареева А.Р.
+                </div>
+                <div class="meta-item" style="text-align: right;">
+                    <strong>Год выполнения:</strong>
+                    2026 г.<br>г. Покачи
+                </div>
+            </div>
+        </section>
+
+        <section id="intro">
+            <h2 class="section-title">Введение</h2>
+            <p>Электрические разряды представляют собой физические явления, проявляющиеся в виде прохождения электрического тока через газовую среду, вакуум или жидкость. Они широко используются в технике, науке и повседневной жизни благодаря своим уникальным свойствам и разнообразному спектру применений.</p>
+            
+            <h3>Актуальность исследования</h3>
+            <p>Изучение видов электрических разрядов позволяет глубже понять природу электричества и открывает новые возможности для развития технологий и научных инноваций в самых различных областях — от энергетики до медицины.</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;">
+                <div style="background: #e3f2fd; padding: 1.2rem; border-radius: 6px;">
+                    <strong>Цель проекта:</strong><br>Систематизировать знания о различных видах электрических разрядов и их практическом применении.
+                </div>
+                <div style="background: #fff8e1; padding: 1.2rem; border-radius: 6px;">
+                    <strong>Гипотеза:</strong><br>Более глубокое понимание различных видов электрических разрядов позволит выявить новые сферы их практического применения и оптимизировать их использование.
+                </div>
+            </div>
+
+            <h3 style="margin-top: 1.5rem;">Задачи проекта:</h3>
+            <ul class="styled-list">
+                <li>Изучить электронные и литературные источники по данной теме.</li>
+                <li>Определить основные виды электрических разрядов и условия их возникновения.</li>
+                <li>Проанализировать физические процессы, происходящие при разряде.</li>
+                <li>Оценить преимущества, недостатки и области применения каждого типа разряда.</li>
+            </ul>
+            <p><strong>Объект исследования:</strong> Электрические разряды.</p>
+        </section>
+
+        <section id="theory">
+            <h2 class="section-title">Глава 1. Теоретическая часть</h2>
+            <p>Электрический разряд — это процесс протекания электрического тока, тесно связанный со значительным увеличением электропроводности среды по отношению к её нормальному состоянию за счет дополнительных свободных носителей заряда.</p>
+            
+            <p>Все разряды делятся на две большие группы:</p>
+            <ol class="styled-list">
+                <li><strong>Несамостоятельный разряд</strong> — протекает только при действии внешнего ионизатора (например, излучения).</li>
+                <li><strong>Самостоятельный разряд</strong> — продолжается и поддерживается самостоятельно после того, как внешний ионизатор прекратил работу.</li>
+            </ol>
+
+            <h2 class="section-title" style="font-size: 1.5rem; margin-top: 2.5rem;">Основные виды разрядов</h2>
+
+            <div class="discharge-card">
+                <h3>1. Тлеющий разряд</h3>
+                <p>Происходит при пониженном давлении газа и относительно низком напряжении. Характеризуется постоянным равномерным свечением газа и незначительной энергией. При увеличении тока может переходить в дуговой.</p>
+                <p><strong>Структура:</strong> делится на тёмное катодное пространство и светящийся (положительный) столб газа.</p>
+                <p><strong>Применение:</strong> источники света (газоразрядные/неоновые лампы), газовые стабилитроны (для стабилизации напряжения), аналитическая химия.</p>
+            </div>
+
+            <div class="discharge-card">
+                <h3>2. Дуговой разряд (Электрическая дуга)</h3>
+                <p>Возникает за счет интенсивной эмиссии электронов с разогретого катода (термоэлектронная или автоэлектронная эмиссия). Сопровождается выделением огромного количества тепла и ослепительным свечением.</p>
+                <p><strong>Применение:</strong> электродуговая сварка и плазменная резка металлов, выплавка стали в дуговых печах, мощные прожекторы (освещение), электроракетные двигатели, электроэрозионная обработка.</p>
+            </div>
+
+            <div class="discharge-card">
+                <h3>3. Коронный разряд (Корона)</h3>
+                <p>Самостоятельный разряд, возникающий в резко неоднородных электрических полях у электродов с большой кривизной поверхности (острия, тонкие провода). Вокруг электрода образуется светящаяся "корона". Бывает лавинной и стримерной формы, зависит от знака напряжения (положительная или отрицательная корона).</p>
+                <p><strong>Применение:</strong> электрофильтры для очистки газов от пыли, нанесение порошковых покрытий, ионизаторы воздуха.</p>
+            </div>
+
+            <div class="discharge-card">
+                <h3>4. Пучково-плазменный разряд (ППР)</h3>
+                <p>Вид разряда, при котором в газ вводится внешний ускоренный пучок электронов. Из-за пучковой неустойчивости плазма сильно разогревается, формируя высоконеравновесную среду.</p>
+                <p><strong>Применение:</strong> плазмохимия (травление полупроводников, осаждение плёнок), модификация поверхностей материалов, генерация рентгеновского излучения, технологии селективного разделения изотопов.</p>
+            </div>
+
+            <div class="discharge-card">
+                <h3>5. Искровой разряд</h3>
+                <p>Нестационарная, прерывистая форма разряда. Имеет вид ярких, ветвящихся зигзагообразных нитей-каналов, быстро сменяющих друг друга. Примером гигантского искрового разряда в природе служит молния. Бывает также скользящим (вдоль диэлектрика с образованием фигур Лихтенберга).</p>
+                <p><strong>Применение:</strong> зажигание рабочей смеси в двигателях внутреннего сгорания (свечи зажигания), электроискровая точная обработка металлов, спектральный анализ, измерение высоких напряжений, искровые счетчики частиц.</p>
+            </div>
+
+            <div class="discharge-card">
+                <h3>6. Кистевой разряд</h3>
+                <p>Промежуточная стадия между коронным и искровым разрядом. Возникает у острий при высоком напряжении (около 10 кВ) и напоминает кисть или пучок светящихся шнуров, не доходящих до второго электрода.</p>
+                <p><strong>Особенности:</strong> в технике чаще всего является вредным (паразитным) эффектом. Вызывает потери мощности в ЛЭП, может стать причиной возгораний и радиопомех.</p>
+            </div>
+        </section>
+
+        <section id="practice">
+            <h2 class="section-title">Глава 2. Практическая часть</h2>
+            <p>В рамках проекта было проведено социологическое исследование с целью определить уровень осведомленности населения об электрических разрядах. Всего в опросе приняло участие <strong>23 человека</strong>.</p>
+            
+            <h3>Результаты анкетирования</h3>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>Возраст респондентов</h4>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-label"><span>до 18 лет</span><span>30.4%</span></div>
+                        <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 30.4%;"></div></div>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-label"><span>18–25 лет</span><span>8.7%</span></div>
+                        <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 8.7%;"></div></div>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-label"><span>36–45 лет</span><span>43.5%</span></div>
+                        <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 43.5%;"></div></div>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-label"><span>Другие</span><span>17.3%</span></div>
+                        <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 17.3%;"></div></div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h4>Знание видов разрядов</h4>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-label"><span>Искровой / Дуговой</span><span>52.2%</span></div>
+                        <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 52.2%; background: #009688;"></div></div>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-label"><span>Тлеющий / Коронный</span><span>30.4%</span></div>
+                        <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 30.4%; background: #009688;"></div></div>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-label"><span>Не знают ни одного</span><span>34.8%</span></div>
+                        <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 34.8%; background: #e53935;"></div></div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h4>Ассоциации с применением</h4>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-label"><span>Медицина</span><span>82.6%</span></div>
+                        <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 82.6%; background: #ff9800;"></div></div>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-label"><span>Освещение / Сварка</span><span>73.9%</span></div>
+                        <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 73.9%; background: #ff9800;"></div></div>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-label"><span>Промышленность</span><span>52.2%</span></div>
+                        <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 52.2%; background: #ff9800;"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Основные выводы исследования:</h3>
+            <ul class="styled-list">
+                <li><strong>Уровень знаний средний:</strong> 91.3% опрошенных слышали термин, но только треть детально понимает физику процессов.</li>
+                <li><strong>Популярность разрядов неравномерна:</strong> Наиболее известны искровой и дуговой разряды (более половины ответов), в то время как о коронном и тлеющем знают значительно меньше.</li>
+                <li><strong>Высокий интерес:</strong> 78.2% респондентов выразили готовность узнать больше о теме при условии простой и наглядной подачи материала.</li>
+            </ul>
+        </section>
+
+        <section id="conclusion">
+            <h2 class="section-title">Заключение</h2>
+            <p>Электрические разряды представляют собой фундаментальные физические процессы с колоссальным прикладным значением. На основе проведенного исследования сформированы ключевые рекомендации:</p>
+            <ul class="styled-list">
+                <li>Создавать наглядные просветительские материалы (инфографику, интерактивные сайты) для упрощения понимания темы.</li>
+                <li>Уделять больше внимания информированию о правилах безопасности и рисках (ожоги, поражение током), связанных с разрядами.</li>
+                <li>Раскрывать потенциал промышленного использования менее популярных разрядов (коронного и тлеющего).</li>
+            </ul>
+            <p>Дальнейшее изучение физики газовых разрядов способно привести к созданию еще более энергоэффективных, безопасных и экологичных технологий будущего.</p>
+        </section>
+
+        <section id="sources">
+            <h2 class="section-title">Список используемых источников</h2>
+            <ol class="styled-list" style="font-size: 0.9rem; color: #555;">
+                <li>Райзер Ю.П. Физика газового разряда. – М.: Наука, 1992. – 536 с.</li>
+                <li>Браун С. Элементарные процессы в плазме газового разряда. – М.: Госатомиздат, 1961.</li>
+                <li>Энгель А. Ионизированные газы. – М.: Физматгиз, 1959.</li>
+                <li>Грановский В.Л. Электрический ток в газе. Установившийся ток. – М.: Наука, 1971.</li>
+                <li>Месяц Г.А. Импульсная энергетика и электроника. – М.: Наука, 2004.</li>
+                <li>Клемёнов В.Б. Техника высоких напряжений. – М.: Издательский дом МЭИ, 2014.</li>
+                <li>Савельев И.В. Курс общей физики. Т. 2. – М.: Наука, 1988.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    const id = entry.target.getAttribute('id');
+                    if (entry.intersectionRatio > 0.2) {
+                        document.querySelectorAll('aside nav initialContent li a').forEach(a => a.classList.remove('active'));
+                        const activeLink = document.querySelector(`aside nav ul li a[href="#${id}"]`);
+                        if (activeLink) activeLink.classList.add('active');
+                    }
+                });
+            }, { threshold: [0.2, 0.5] });
+
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
